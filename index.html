@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>簡易隨堂電子白板 | Classroom Whiteboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Modern Toolbar -->
+    <header class="toolbar">
+      <div class="toolbar-brand">
+        <span class="brand-icon">✏️</span>
+        <span class="brand-text">隨堂電子白板</span>
+      </div>
+
+      <div class="toolbar-groups">
+        <!-- Background Selection Group -->
+        <div class="tool-group">
+          <span class="group-label">版面樣式</span>
+          <div class="group-buttons">
+            <button class="btn bg-btn active" data-bg="white" title="純白畫布">
+              <span class="icon">⬜</span> 純白
+            </button>
+            <button class="btn bg-btn" data-bg="english" title="英文四線格">
+              <span class="icon">🔤</span> 英文格
+            </button>
+            <button class="btn bg-btn" data-bg="lined" title="橫線記事">
+              <span class="icon">📝</span> 橫線
+            </button>
+            <button class="btn bg-btn" data-bg="grid" title="數學方格">
+              <span class="icon">🏁</span> 方格
+            </button>
+            <button class="btn bg-btn" data-bg="music" title="五線譜">
+              <span class="icon">🎼</span> 五線譜
+            </button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Color Picker Group -->
+        <div class="tool-group">
+          <span class="group-label">畫筆顏色</span>
+          <div class="color-palette">
+            <button class="color-dot active" data-color="#1e293b" style="background-color: #1e293b;" title="黑色"></button>
+            <button class="color-dot" data-color="#ef4444" style="background-color: #ef4444;" title="紅色"></button>
+            <button class="color-dot" data-color="#3b82f6" style="background-color: #3b82f6;" title="藍色"></button>
+            <button class="color-dot" data-color="#10b981" style="background-color: #10b981;" title="綠色"></button>
+            <div class="custom-color-container" title="自訂顏色">
+              <input type="color" id="custom-color-picker" value="#f59e0b">
+              <span class="custom-color-indicator" style="background-color: #f59e0b;"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Stroke Width Group -->
+        <div class="tool-group">
+          <span class="group-label">線條粗細</span>
+          <div class="group-buttons">
+            <button class="btn size-btn" data-size="3" title="細線條">
+              <span class="size-dot size-thin"></span>細
+            </button>
+            <button class="btn size-btn active" data-size="6" title="中等線條">
+              <span class="size-dot size-medium"></span>中
+            </button>
+            <button class="btn size-btn" data-size="12" title="粗線條">
+              <span class="size-dot size-thick"></span>粗
+            </button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Operations Group -->
+        <div class="tool-group">
+          <span class="group-label">功能工具</span>
+          <div class="group-buttons">
+            <button class="btn tool-btn" id="eraser-btn" title="橡皮擦">
+              <span class="icon">🧽</span> 橡皮擦
+            </button>
+            <button class="btn op-btn" id="undo-btn" disabled title="復原 (Ctrl+Z)">
+              <span class="icon">↩️</span> 復原
+            </button>
+            <button class="btn op-btn" id="redo-btn" disabled title="重做 (Ctrl+Y)">
+              <span class="icon">↪️</span> 重做
+            </button>
+            <button class="btn op-btn" id="save-btn" title="儲存板面圖片為 PNG">
+              <span class="icon">💾</span> 儲存圖片
+            </button>
+            <button class="btn danger-btn" id="clear-btn" title="全部清除">
+              <span class="icon">🗑️</span> 清除
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Whiteboard Container -->
+    <main class="whiteboard-frame-container">
+      <div class="whiteboard-outer-frame">
+        <!-- Aluminum bezel style frame -->
+        <div class="whiteboard-inner-frame">
+          <!-- Main Canvas Area -->
+          <div class="whiteboard-canvas-wrapper bg-white" id="canvas-wrapper">
+            <canvas id="drawing-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Bottom Physical-Style Pen Tray -->
+        <div class="pen-tray">
+          <div class="tray-groove">
+            <div class="tray-item marker-black active-marker" data-tray-color="#1e293b" title="黑板擦/黑色筆"></div>
+            <div class="tray-item marker-red" data-tray-color="#ef4444" title="紅色筆"></div>
+            <div class="tray-item marker-blue" data-tray-color="#3b82f6" title="藍色筆"></div>
+            <div class="tray-item marker-green" data-tray-color="#10b981" title="綠色筆"></div>
+            <div class="tray-item board-eraser" id="tray-eraser" title="實體板擦"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
