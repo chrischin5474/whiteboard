@@ -1,0 +1,446 @@
+/* Global CSS Reset & Variables */
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-app: #f1f5f9;
+  --toolbar-bg: rgba(255, 255, 255, 0.85);
+  --toolbar-border: rgba(226, 232, 240, 0.8);
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-whiteboard: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.15), inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* App Container Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 16px;
+  gap: 16px;
+}
+
+/* Modern Glassmorphic Toolbar */
+.toolbar {
+  background: var(--toolbar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--toolbar-border);
+  border-radius: 12px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.toolbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-icon {
+  font-size: 24px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.brand-text {
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.toolbar-groups {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.group-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.group-buttons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.divider {
+  width: 1px;
+  height: 36px;
+  background-color: rgba(203, 213, 225, 0.6);
+  align-self: center;
+}
+
+/* Buttons Styling */
+.btn {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
+  background-color: #f1f5f9;
+}
+
+.btn.active {
+  background-color: #e0e7ff;
+  border-color: #6366f1;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.danger-btn {
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+  color: #ef4444;
+}
+
+.danger-btn:hover {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+.btn:disabled, .op-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+}
+
+/* Color Palette */
+.color-palette {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px;
+}
+
+.color-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  outline: 1px solid #cbd5e1;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.color-dot:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.15);
+}
+
+.color-dot.active {
+  transform: scale(1.2);
+  outline: 2px solid #4f46e5;
+  outline-offset: 1px;
+}
+
+/* Custom Color Picker */
+.custom-color-container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ffffff;
+  outline: 1px solid #cbd5e1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.custom-color-container:hover {
+  transform: scale(1.15);
+}
+
+.custom-color-container.active {
+  transform: scale(1.2);
+  outline: 2px solid #4f46e5;
+  outline-offset: 1px;
+}
+
+#custom-color-picker {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.custom-color-indicator {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(red, yellow, green, cyan, blue, magenta, red);
+}
+
+/* Brush Size Dots */
+.size-dot {
+  border-radius: 50%;
+  background-color: currentColor;
+  display: inline-block;
+}
+
+.size-thin {
+  width: 4px;
+  height: 4px;
+}
+
+.size-medium {
+  width: 8px;
+  height: 8px;
+}
+
+.size-thick {
+  width: 12px;
+  height: 12px;
+}
+
+/* Main Workspace with Board Frame */
+.whiteboard-frame-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Realistic Whiteboard Border Frame */
+.whiteboard-outer-frame {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 50%, #64748b 100%);
+  border: 14px solid #cbd5e1; /* The main aluminum frame bezel */
+  border-bottom-width: 20px;  /* Slightly thicker bottom border */
+  border-radius: 12px;
+  box-shadow: var(--shadow-whiteboard);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.whiteboard-inner-frame {
+  flex: 1;
+  background: #475569;
+  padding: 4px; /* The dark inner bezel line */
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Active canvas drawing area */
+.whiteboard-canvas-wrapper {
+  flex: 1;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.15);
+  transition: background 0.3s ease;
+}
+
+#drawing-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  z-index: 2;
+}
+
+/* Background Patterns (SVG based for sharp rendering on any zoom) */
+.bg-white {
+  background-color: #ffffff;
+}
+
+.bg-english {
+  background-color: #fafaf9;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="80"><line x1="0" y1="15" x2="40" y2="15" stroke="%233b82f6" stroke-width="1" opacity="0.45" /><line x1="0" y1="35" x2="40" y2="35" stroke="%2394a3b8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4" /><line x1="0" y1="55" x2="40" y2="55" stroke="%23ef4444" stroke-width="1" opacity="0.45" /><line x1="0" y1="75" x2="40" y2="75" stroke="%233b82f6" stroke-width="1" opacity="0.45" /></svg>');
+  background-repeat: repeat;
+  background-size: 40px 80px;
+}
+
+.bg-lined {
+  background-color: #fafaf9;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><line x1="0" y1="39.5" x2="40" y2="39.5" stroke="%23cbd5e1" stroke-width="1.2" opacity="0.65" /></svg>');
+  background-repeat: repeat;
+  background-size: 40px 40px;
+}
+
+.bg-grid {
+  background-color: #fafaf9;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" fill="none" stroke="%23cbd5e1" stroke-width="1.2" opacity="0.65"/></svg>');
+  background-repeat: repeat;
+  background-size: 40px 40px;
+}
+
+.bg-music {
+  background-color: #fafaf9;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="100"><line x1="0" y1="20" x2="40" y2="20" stroke="%23475569" stroke-width="1.2" opacity="0.5" /><line x1="0" y1="30" x2="40" y2="30" stroke="%23475569" stroke-width="1.2" opacity="0.5" /><line x1="0" y1="40" x2="40" y2="40" stroke="%23475569" stroke-width="1.2" opacity="0.5" /><line x1="0" y1="50" x2="40" y2="50" stroke="%23475569" stroke-width="1.2" opacity="0.5" /><line x1="0" y1="60" x2="40" y2="60" stroke="%23475569" stroke-width="1.2" opacity="0.5" /></svg>');
+  background-repeat: repeat;
+  background-size: 40px 100px;
+}
+
+/* Bottom Pen Tray */
+.pen-tray {
+  height: 24px;
+  background: linear-gradient(0deg, #94a3b8 0%, #cbd5e1 50%, #e2e8f0 100%);
+  border-top: 1px solid #64748b;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 5;
+}
+
+/* The tray groove for pens */
+.tray-groove {
+  width: 320px;
+  height: 12px;
+  background: linear-gradient(180deg, #475569 0%, #1e293b 100%);
+  border-radius: 6px;
+  position: absolute;
+  top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 20px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Tray Markers & Eraser */
+.tray-item {
+  width: 38px;
+  height: 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.marker-black {
+  background: linear-gradient(90deg, #475569 0%, #1e293b 40%, #0f172a 80%, #334155 100%);
+  border: 1px solid #0f172a;
+}
+.marker-red {
+  background: linear-gradient(90deg, #fca5a5 0%, #ef4444 40%, #b91c1c 80%, #fca5a5 100%);
+  border: 1px solid #991b1b;
+}
+.marker-blue {
+  background: linear-gradient(90deg, #93c5fd 0%, #3b82f6 40%, #1d4ed8 80%, #93c5fd 100%);
+  border: 1px solid #1e40af;
+}
+.marker-green {
+  background: linear-gradient(90deg, #6ee7b7 0%, #10b981 40%, #047857 80%, #6ee7b7 100%);
+  border: 1px solid #065f46;
+}
+
+.board-eraser {
+  width: 50px;
+  height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #d97706 0%, #b45309 40%, #78350f 100%);
+  border: 1px solid #451a03;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Markers lifting active state */
+.tray-item:hover {
+  transform: translateY(-4px) scale(1.1);
+}
+
+.active-marker {
+  transform: translateY(-8px) scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4), 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Floating animation for brand logo */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Responsive UI Adjustments */
+@media (max-width: 900px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+  }
+  .toolbar-groups {
+    justify-content: space-between;
+  }
+}
